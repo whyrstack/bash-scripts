@@ -19,7 +19,7 @@ SERVICE_NAME_PORTS=(
 
 for IP in "${SERVICE_NAME_IPS[@]}"; do
         for PORT in "${SERVICE_NAME_PORTS[@]}"; do
-                RESPONSE=$(timeout 1 telnet -c $IP $PORT 2>&1 | grep "\bConnected\b" | awk '{ print $1 }')
+                RESPONSE=$(timeout 1 telnet -c $IP $PORT 2>&1 | grep "\bConnected\b")
                 if [[ $RESPONSE == *"Connected"* ]]; then
                         echo -e "${GB} $SERVICE_NAME connected to $IP on port $PORT ${NC}"
                 else
