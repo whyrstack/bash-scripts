@@ -11,3 +11,5 @@ for PKG in ${PACKAGES[@]}; do
                 echo "The Packages $PKG already exist on this system."
         fi
 done
+
+exit 0
