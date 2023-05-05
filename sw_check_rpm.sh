@@ -3,11 +3,11 @@
 PACKAGES=(curl wget httpd)
 
 for PKG in ${PACKAGES[@]}; do
-	if [[ $(rpm -qa $PKG) != 0 ]]; then
-		echo "The Package does not exist on this system."
-		sudo yum -y install $PKG
-		echo "The missing Packages have been installed successfully."
-	else
-		echo "The Packages already exist on this system."
-	fi
+        if [[ -z $(rpm -qa $PKG) ]]; then
+                echo "The Package $PKG does not exist on this system."
+                sleep 5; sudo yum -y -q install $PKG
+                echo "$PKG installed"
+        else
+                echo "The Packages $PKG already exist on this system."
+        fi
 done
